@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="Blinn" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="blinn"/>
+			<item value="blin"/>
+			<item value="CommandUpdate"/>
+			<item value="Command"/>
+			<item value="customCommand"/>
+			<item value="custom"/>
+			<item value="lookat"/>
+			<item value="lightLoc"/>
+			<item value="+1"/>
+			<item value="v_matrix"/>
+			<item value="GL_LESS"/>
+			<item value="glDepthFunc"/>
+			<item value="GL_GRE"/>
+			<item value="GL_LT"/>
+			<item value="vertPos"/>
+		</list>
+		<list key="replacehistory">
+			<item value=".5f,.5f,.5f,1f"/>
+			<item value="0.70711f"/>
+			<item value="slices"/>
+			<item value="r"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="284" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="391" key="DIALOG_HEIGHT"/>
+		<item value="683" key="DIALOG_X_ORIGIN"/>
+		<item value="569" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

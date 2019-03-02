@@ -1,0 +1,88 @@
+package a3;
+
+import graphicslib3D.*;
+
+public class Camera {
+	private Vector3D localLoc = new Vector3D(0,0,0);
+	private Matrix3D V_rot = new Matrix3D();
+	
+	private Vector3D U = new Vector3D(1,0,0);
+	private Vector3D V = new Vector3D(0,1,0);
+	private Vector3D N = new Vector3D(0,0,1);
+	
+	public void Camera() {
+	}
+	
+	public void setCameraPos(float x, float y, float z) {
+		localLoc = new Vector3D(x,y,z);
+	}
+	
+	public void lookAt(Point3D eyePos, Point3D target) {
+		Vector3D eye = new Vector3D(eyePos);
+		
+		Vector3D fwd = new Vector3D(eyePos.minus(target)).normalize();
+		
+		Vector3D negfwd = new Vector3D(0,0,0).minus(fwd);
+				
+		Vector3D side = negfwd.cross( new Vector3D(0,1,0)).normalize();
+		
+		Vector3D up = side.cross(negfwd).normalize();
+		
+		Matrix3D lookatmat = new Matrix3D();
+		
+		lookatmat.setRow(0, side);
+		lookatmat.setRow(1, up);
+		lookatmat.setRow(2, negfwd);
+		lookatmat.setCol(3,  new Vector3D
+							(-(side.dot(eye)),
+							 -(new Vector3D(0,0,0).dot(eye)),
+							 -(negfwd.dot(eye)),
+							 1));
+		V_rot = lookatmat;
+	}
+	
+	public void rotate(float amt, Vector3D axis) {
+		if(axis.equals(new Vector3D(1,0,0))) {
+			V_rot.rotate(amt,U);
+			V = V.mult(V_rot);
+			N = N.mult(V_rot);
+		}
+		else if(axis.equals(new Vector3D(0,1,0))) {
+			V_rot.rotate(amt,V);
+			U = U.mult(V_rot);
+			N = N.mult(V_rot);
+		}
+		else if(axis.equals(new Vector3D(0,0,1))) {
+			V_rot.rotate(amt,N);
+			V = V.mult(V_rot);
+			U = U.mult(V_rot);
+		}
+	}
+	
+	public void translateX(float amt) {
+		Point3D U_mov = new Point3D(U.normalize());
+		U_mov = U_mov.mult(amt);
+		localLoc = localLoc.add(new Vector3D(U_mov));
+	}
+	public void translateY(float amt) {
+		Point3D V_mov = new Point3D(V.normalize());
+		V_mov = V_mov.mult(amt);
+		localLoc = localLoc.add(new Vector3D(V_mov));
+	}
+	public void translateZ(float amt) {
+		Point3D Z_mov = new Point3D(N.normalize());
+		Z_mov = Z_mov.mult(amt);
+		localLoc = localLoc.add(new Vector3D(Z_mov));
+	}
+	
+	public Matrix3D computeView() {
+		Matrix3D retMat = new Matrix3D();
+		
+		retMat = V_rot;
+		retMat.setCol(3,  new Vector3D(
+				-(localLoc.dot(U)), -(localLoc.dot(V)), -(localLoc.dot(N))
+				));
+		
+		return retMat;
+	}
+}

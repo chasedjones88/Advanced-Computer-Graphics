@@ -1,0 +1,13 @@
+package objects;
+
+public class Gird {
+	public float[] vertices = {
+			0.0f, 0.0f, 0.0f, 1000.0f, 0.0f, 0.0f,
+			0.0f, 0.0f, 0.0f, 0.0f, 1000.0f, 0.0f,
+			0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1000.0f
+		};
+	
+	public Gird() {}
+	
+	public float[] getVerts() {return vertices;}
+}

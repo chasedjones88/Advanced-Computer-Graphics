@@ -1,0 +1,29 @@
+1541973963359	Delete element
+1541974006308	Delete element
+1541975137870	Delete elements
+1541978599753	Move file
+1541984260891	Rename field 'joglMonkeyTexture'
+1541984266384	Rename field 'myMonkeyTexture'
+1541984488447	Move file
+1541984501022	Rename resource 'spstob_1.jpg'
+1542059399834	Delete element
+1542061100922	Rename local variable 'mv_loc'
+1542215674198	Rename field 'mvStack'
+1542216880918	Rename local variable 'vertSharerPath'
+1542325266699	Copy files
+1542327377744	Rename method 'setupBuffersForDraw'
+1542327524875	Rename method 'drawObject'
+1542332531751	Rename field 'shuttle'
+1542332787584	Rename resource 'line_frag.shader'
+1542332801004	Rename resource 'line_vert.shader'
+1542332817710	Copy files
+1542333591827	Copy files
+1542333613889	Delete element
+1542410030011	Copy files
+1542410798386	Rename field 'vLineShaderSource'
+1542410805273	Rename field 'fLineShaderSource'
+1542410964994	Rename field 'rendering_program1'
+1542410977843	Rename field 'rendering_program2'
+1542410987722	Rename field 'rendering_program3'
+1542410993893	Rename field 'rendering_program4'
+1542411157401	Rename field 'axes_rendering_program4'

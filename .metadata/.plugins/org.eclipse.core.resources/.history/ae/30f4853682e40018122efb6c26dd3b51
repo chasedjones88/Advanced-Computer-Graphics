@@ -1,0 +1,59 @@
+package a3;
+
+import graphicslib3D.*;
+
+public class Camera {
+	private Point3D localLoc = new Point3D(0,0,0);
+	private Matrix3D rotMat = new Matrix3D();
+	
+	private Vector3D U = new Vector3D(1,0,0);
+	private Vector3D V = new Vector3D(0,1,0);
+	private Vector3D N = new Vector3D(0,0,1);
+	
+	public void Camera() {
+	}
+	
+	public void setCameraPos(float x, float y, float z) {
+		localLoc = new Point3D(x,y,z);
+	}
+	
+	public void setCameraRot(Matrix3D rotMat) {
+		this.rotMat = rotMat;
+	}
+	public void rotate(float amt, Vector3D axis) {
+		if(axis.equals(new Vector3D(1,0,0))) {
+			rotMat.rotate(amt, U);
+			V = V.mult(U_rot);
+			N = N.mult(U_rot);
+		}
+		else if(axis.equals(new Vector3D(0,1,0))) {
+			rotMat.setY(rotMat.getY()+amt);
+		}
+		else if(axis.equals(new Vector3D(0,0,1))) {
+			rotMat.setZ(rotMat.getZ()+amt);
+		}
+	}
+	
+	public void translateX(float amt) {
+		Point3D U_mov = new Point3D(U.normalize());
+		U_mov = U_mov.mult(amt);
+		localLoc = localLoc.add(U_mov);
+	}
+	public void translateY(float amt) {
+		Point3D V_mov = new Point3D(V.normalize());
+		V_mov = V_mov.mult(amt);
+		localLoc = localLoc.add(V_mov);
+	}
+	public void translateZ(float amt) {
+		Point3D Z_mov = new Point3D(N.normalize());
+		Z_mov = Z_mov.mult(amt);
+		localLoc = localLoc.add(Z_mov);
+	}
+	
+	public Matrix3D computeView() {
+		Matrix3D retMat = new Matrix3D();
+		retMat.translate(localLoc.getX(), localLoc.getY(), localLoc.getZ());
+		retMat.concatenate(rotMat);
+		return retMat.inverse();
+	}
+}

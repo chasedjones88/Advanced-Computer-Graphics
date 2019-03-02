@@ -1,0 +1,84 @@
+package a3;
+
+import graphicslib3D.*;
+
+public class Camera {
+	private Point3D localLoc = new Point3D(0,0,0);
+	private Vector3D rotVector = new Vector3D(0,0,0);
+	
+	private Vector3D U = new Vector3D(1,0,0);
+	private Vector3D V = new Vector3D(0,1,0);
+	private Vector3D N = new Vector3D(0,0,1);
+	
+	public void Camera() {
+	}
+	
+	public void setCameraPos(float x, float y, float z) {
+		localLoc = new Point3D(x,y,z);
+	}
+	
+	public void setCameraRot(Vector3D rotVector) {
+		this.rotVector = rotVector;
+	}
+	public void rotate(float amt, Vector3D axis) {
+		if(axis.equals(new Vector3D(1,0,0))) {
+			rotVector.setX(rotVector.getX()+amt);
+		}
+		else if(axis.equals(new Vector3D(0,1,0))) {
+			rotVector.setY(rotVector.getY()+amt);
+		}
+		else if(axis.equals(new Vector3D(0,0,1))) {
+			rotVector.setZ(rotVector.getZ()+amt);
+		}
+	}
+	
+	public void lookat(Point3D target) {
+		Point3D fwdpnt = localLoc.minus(target);
+		
+		Vector3D fwd = new Vector3D(fwdpnt);
+		fwd = fwd.normalize();
+		
+		Vector3D negfwd = new Vector3D(0,0,0).minus(fwd);
+				
+		Vector3D side = negfwd.cross( new Vector3D(0,1,0));
+		
+		Vector3D up = side.cross(negfwd).normalize();
+		
+		U = side;
+		V = up;
+		N = negfwd;
+	}
+	
+	public void translateX(float amt) {
+		Point3D U_mov = new Point3D(U.normalize());
+		U_mov = U_mov.mult(amt);
+		localLoc = localLoc.add(U_mov);
+	}
+	public void translateY(float amt) {
+		Point3D V_mov = new Point3D(V.normalize());
+		V_mov = V_mov.mult(amt);
+		localLoc = localLoc.add(V_mov);
+	}
+	public void translateZ(float amt) {
+		Point3D Z_mov = new Point3D(N.normalize());
+		Z_mov = Z_mov.mult(amt);
+		localLoc = localLoc.add(Z_mov);
+	}
+	
+	public Matrix3D computeView() {
+		Matrix3D retMat = new Matrix3D();
+		
+		
+		Matrix3D rotMat = new Matrix3D();
+		rotMat.setRow(0, U); rotMat.setElementAt(0, 3, 0.0f);
+		rotMat.setRow(1, V); rotMat.setElementAt(1, 3, 0.0f);
+		rotMat.setRow(2, N); rotMat.setElementAt(2, 3, 0.0f);
+		rotMat.setRow(3, new Vector3D(0,0,0,1));
+		
+		retMat = (rotMat);
+		
+		retMat.translate(localLoc.getX(), localLoc.getY(), localLoc.getZ());
+		
+		return retMat;
+	}
+}

@@ -1,0 +1,17 @@
+1543249374868	Copy compilation unit
+1543249477067	Rename type 'Code'
+1543251204387	Rename field 'torusLoc'
+1543251306665	Rename field 'numTorusVertices'
+1543251380151	Rename local variable 'pyramid_vertices'
+1543251393121	Rename local variable 'pyramid_vertex_positions'
+1543251400583	Rename local variable 'pyramid_normals'
+1543251649640	Rename local variable 'pyrVertBuf'
+1543252151750	Rename field 'numPyramidVertices'
+1543252476653	Rename field 'pyrLoc'
+1543254191473	Rename field 'vBlinn1ShaderSource'
+1543254200309	Rename field 'vBlinn2ShaderSource'
+1543254209786	Rename field 'fBlinn2ShaderSource'
+1543255734397	Copy compilation unit
+1543255750418	Rename type 'Gird'
+1543256302406	Copy files
+1543256337134	Rename resource 'vert_gird.shader'
